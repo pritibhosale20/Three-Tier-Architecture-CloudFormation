@@ -63,19 +63,15 @@ Click Create Stack and wait for deployment completion.
 **2️⃣ Verify the Deployment**
 
 Go to EC2 Dashboard and verify:
-
 WebServer and AppServer instances are running.
 
 Go to RDS Dashboard and check:
-
 The database instance is active.
 
 Go to Load Balancer Section in EC2 and verify:
-
 The ALB is active and associated with EC2 instances.
 
 Check Security Groups to confirm:
-
 ALB allows inbound HTTP (80) traffic.
 
 WebServer allows traffic only from ALB.
