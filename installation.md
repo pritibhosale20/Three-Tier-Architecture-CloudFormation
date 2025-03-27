@@ -68,7 +68,7 @@ Restart Nginx:
 sudo systemctl restart nginx
 ```
 
-**Connect to AppServer (Flask):**
+**Step 3: Connect to AppServer (Flask):**
 
 First, SSH into the WebServer
 
@@ -121,9 +121,48 @@ if __name__ == '__main__':
 Replace YOUR_RDS_ENDPOINT with your actual RDS endpoint from CloudFormation Outputs.
 
 Replace YourPassword and YourDatabase with your database credentials.
+
 **Run the Flask App:**
+```
 python3 app.py
+```
 The Flask app should now be running on port 5000.
+
+**Step 5: Create a Target Group**
+
+1. Go to AWS EC2 Console → Load Balancing → Target Groups
+
+2. Click "Create target group" and configure as follows:
+
+Target group name: MyAppTargetGroup
+
+Target type: Instance
+
+Protocol: HTTP
+
+Port: 80
+
+VPC: Select your VPC
+
+3. Click "Next" and Register Targets
+
+Select the AppServer instance
+
+Click Include as pending below
+
+Click Create target group
+
+4. Attach the Target Group to the Load Balancer
+
+Go to AWS EC2 Console → Load Balancers
+
+Select your Application Load Balancer (ALB)
+
+Navigate to Listeners → Click View/edit rules
+
+Edit the default rule to Forward to MyAppTargetGroup
+
+Click Save
 
 **Step 6: Test the Application**
 
