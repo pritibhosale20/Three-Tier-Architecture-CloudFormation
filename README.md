@@ -96,7 +96,7 @@ The request should be forwarded to the backend (AppServer).
 
 The backend should interact with the database (RDS).
 
-**Manual Changes Required**
+## Manual Changes Required
 
 Update the AMI ID for EC2 instances based on the region.
 
@@ -106,7 +106,7 @@ Adjust Instance Types as per your requirements.
 
 Ensure RDS username & password are correctly configured.
 
-**Cleanup**
+## Cleanup
 
 To delete all resources, simply delete the CloudFormation Stack:
 
@@ -116,6 +116,6 @@ Select your stack and click Delete.
 
 Wait for AWS to remove all resources automatically.
 
-✅ Successfully Deployed a Three-Tier Architecture on AWS using CloudFormation! 🚀
+## ✅ Successfully Deployed a Three-Tier Architecture on AWS using CloudFormation! 🚀
 
 
