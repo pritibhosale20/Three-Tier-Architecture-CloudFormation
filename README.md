@@ -10,6 +10,7 @@ App Tier: Flask API Server (EC2) for backend logic
 
 Database Tier: Amazon RDS (MySQL) for data storage
 
+
 ## Architecture Components
 
 **1. VPC & Networking:**
@@ -19,6 +20,7 @@ A VPC with multiple subnets across two Availability Zones for high availability.
 Public subnets for ALB & WebServer (Nginx).
 
 Private subnets for AppServer (Flask API) and Database (RDS).
+
 
 **2. Security Groups:**
 
@@ -30,11 +32,13 @@ AppSecurityGroup: Allows requests only from WebServer on port 5000.
 
 DBSecurityGroup: Allows only AppServer to connect to RDS on port 3306.
 
+
 **3. Load Balancer:**
 
 An Application Load Balancer (ALB) in public subnets.
 
 Routes incoming HTTP traffic to the WebServer.
+
 
 **4. EC2 Instances:**
 
@@ -42,11 +46,13 @@ WebServer (Nginx) handles frontend requests.
 
 AppServer (Flask API) handles backend logic.
 
+
 **5. Database Layer:**
 
 Amazon RDS (MariaDB) for persistent data storage.
 
 Deployed in private subnets for security.
+
 
 ## Deployment Instructions
 
@@ -59,6 +65,7 @@ Click on Create Stack → With new resources.
 Upload the CloudFormation YAML template.
 
 Click Create Stack and wait for deployment completion.
+
 
 **2️⃣ Verify the Deployment**
 
@@ -80,6 +87,7 @@ AppServer allows traffic only from WebServer.
 
 RDS allows connections only from AppServer.
 
+
 **3️⃣ Test the Application**
 
 Get ALB DNS Name:
@@ -96,6 +104,7 @@ The request should be forwarded to the backend (AppServer).
 
 The backend should interact with the database (RDS).
 
+
 ## Manual Changes Required
 
 Update the AMI ID for EC2 instances based on the region.
@@ -106,6 +115,7 @@ Adjust Instance Types as per your requirements.
 
 Ensure RDS username & password are correctly configured.
 
+
 ## Cleanup
 
 To delete all resources, simply delete the CloudFormation Stack:
@@ -115,6 +125,7 @@ Go to CloudFormation → Stacks.
 Select your stack and click Delete.
 
 Wait for AWS to remove all resources automatically.
+
 
 ## ✅ Successfully Deployed a Three-Tier Architecture on AWS using CloudFormation! 🚀
 
