@@ -12,7 +12,7 @@ Database Tier: Amazon RDS (MySQL) for data storage
 
 ## Architecture Components
 
-**VPC & Networking:**
+**1. VPC & Networking:**
 
 A VPC with multiple subnets across two Availability Zones for high availability.
 
@@ -20,7 +20,7 @@ Public subnets for ALB & WebServer (Nginx).
 
 Private subnets for AppServer (Flask API) and Database (RDS).
 
-**Security Groups:**
+**2. Security Groups:**
 
 ALBSecurityGroup: Allows HTTP (80) from the internet and forwards to WebServer.
 
@@ -30,19 +30,19 @@ AppSecurityGroup: Allows requests only from WebServer on port 5000.
 
 DBSecurityGroup: Allows only AppServer to connect to RDS on port 3306.
 
-**Load Balancer:**
+**3. Load Balancer:**
 
 An Application Load Balancer (ALB) in public subnets.
 
 Routes incoming HTTP traffic to the WebServer.
 
-**EC2 Instances:**
+**4. EC2 Instances:**
 
 WebServer (Nginx) handles frontend requests.
 
 AppServer (Flask API) handles backend logic.
 
-**Database Layer:**
+**5. Database Layer:**
 
 Amazon RDS (MariaDB) for persistent data storage.
 
