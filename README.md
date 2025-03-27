@@ -1,6 +1,6 @@
-#Three-Tier Architecture Deployment using AWS CloudFormation
+## Three-Tier Architecture Deployment using AWS CloudFormation
 
-Overview
+## Overview
 
 This project provisions a Three-Tier Architecture on AWS using CloudFormation. The architecture consists of:
 
@@ -10,11 +10,9 @@ App Tier: Flask API Server (EC2) for backend logic
 
 Database Tier: Amazon RDS (MySQL) for data storage
 
-Security Groups: Ensuring secure communication between the tiers
+## Architecture Components
 
-Architecture Components
-
-VPC & Networking:
+**VPC & Networking:**
 
 A VPC with multiple subnets across two Availability Zones for high availability.
 
@@ -22,7 +20,7 @@ Public subnets for ALB & WebServer (Nginx).
 
 Private subnets for AppServer (Flask API) and Database (RDS).
 
-Security Groups:
+**Security Groups:**
 
 ALBSecurityGroup: Allows HTTP (80) from the internet and forwards to WebServer.
 
@@ -32,27 +30,27 @@ AppSecurityGroup: Allows requests only from WebServer on port 5000.
 
 DBSecurityGroup: Allows only AppServer to connect to RDS on port 3306.
 
-Load Balancer:
+**Load Balancer:**
 
 An Application Load Balancer (ALB) in public subnets.
 
 Routes incoming HTTP traffic to the WebServer.
 
-EC2 Instances:
+**EC2 Instances:**
 
 WebServer (Nginx) handles frontend requests.
 
 AppServer (Flask API) handles backend logic.
 
-Database Layer:
+**Database Layer:**
 
-Amazon RDS (MySQL) for persistent data storage.
+Amazon RDS (MariaDB) for persistent data storage.
 
 Deployed in private subnets for security.
 
-Deployment Instructions
+## Deployment Instructions
 
-1️⃣ Launch CloudFormation Stack
+**1️⃣ Launch CloudFormation Stack**
 
 Navigate to AWS Management Console → CloudFormation.
 
@@ -60,11 +58,9 @@ Click on Create Stack → With new resources.
 
 Upload the CloudFormation YAML template.
 
-Provide necessary parameters (VPC CIDR, Subnet IDs, Instance Type, etc.).
-
 Click Create Stack and wait for deployment completion.
 
-2️⃣ Verify the Deployment
+**2️⃣ Verify the Deployment**
 
 Go to EC2 Dashboard and verify:
 
@@ -88,7 +84,7 @@ AppServer allows traffic only from WebServer.
 
 RDS allows connections only from AppServer.
 
-3️⃣ Test the Application
+**3️⃣ Test the Application**
 
 Get ALB DNS Name:
 
@@ -104,7 +100,7 @@ The request should be forwarded to the backend (AppServer).
 
 The backend should interact with the database (RDS).
 
-Manual Changes Required
+**Manual Changes Required**
 
 Update the AMI ID for EC2 instances based on the region.
 
@@ -114,31 +110,7 @@ Adjust Instance Types as per your requirements.
 
 Ensure RDS username & password are correctly configured.
 
-Troubleshooting
-
-Stack Stuck in CREATE_IN_PROGRESS:
-
-Check CloudFormation Events for errors.
-
-Ensure IAM permissions allow creating VPC, EC2, RDS, ALB.
-
-Verify Subnet and Security Group configurations.
-
-Cannot Connect to ALB:
-
-Ensure ALB Security Group allows inbound HTTP (80).
-
-Check if EC2 instances are in the target group.
-
-Verify that WebServer is running and serving requests.
-
-Database Connection Issues:
-
-Confirm AppServer Security Group allows outbound traffic on port 3306.
-
-Ensure RDS Security Group allows inbound traffic from AppSecurityGroup.
-
-Cleanup
+**Cleanup**
 
 To delete all resources, simply delete the CloudFormation Stack:
 
